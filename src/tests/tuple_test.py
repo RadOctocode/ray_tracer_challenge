@@ -62,7 +62,7 @@ class TupleTest(unittest.TestCase):
         expected_x = 0.3
         expected_y = 1.1
         expected_z = 2.2
-        expected_w = 0.0
+        expected_w = 1.0
         actual = Point(0.3, 1.1, 2.2)
 
         self.assertEqual(expected_x, actual.x)
@@ -100,6 +100,8 @@ class TupleTest(unittest.TestCase):
         expected = Vector(-2.0, -4.0, -6.0)
         actual = a - b
 
+        print(expected)
+        print(actual)
         self.assertEqual(actual, expected)
         self.assertTrue(actual.is_vector())
     
@@ -124,7 +126,7 @@ class TupleTest(unittest.TestCase):
     def test_subtract_vector_from_zero_vector(self):
         a = Vector(0.0, 0.0, 0.0)
         b = Vector(5.0, -6.0, -7.0)
-        expected = Vector(-5.0, 6.0, -7.0)
+        expected = Vector(-5.0, 6.0, 7.0)
         actual = a - b
 
         self.assertEqual(actual, expected)

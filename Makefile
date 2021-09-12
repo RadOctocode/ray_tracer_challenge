@@ -1,3 +1,6 @@
 test:
-	echo "remember to export PYTHONPATH = `pwd`/src/objects"
+	echo "remember to run the environment set up script"
 	python3 -m pytest `pwd`/src/tests/*
+
+clean:
+	rm src/objects/*.pyc

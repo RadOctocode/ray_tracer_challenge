@@ -32,6 +32,9 @@ class Tuple:
         self._z = z
         self._w = w
     
+    def __repr__(self):
+        return f"x:{self._x}, y:{self._y}, z:{self._z}, w:{self._w}"
+
     @property
     def x(self):
         return self._x
@@ -57,9 +60,9 @@ class Tuple:
         return Tuple(new_x, new_y, new_z, new_w)
     
     def __sub__(self, other):
-        new_x = self.x + other.x
-        new_y = self.y + other.y
-        new_z = self.z + other.z
+        new_x = self.x - other.x
+        new_y = self.y - other.y
+        new_z = self.z - other.z
         if self.is_point():
             if other.is_point():
                 return Vector(new_x, new_y, new_z)
