@@ -100,8 +100,6 @@ class TupleTest(unittest.TestCase):
         expected = Vector(-2.0, -4.0, -6.0)
         actual = a - b
 
-        print(expected)
-        print(actual)
         self.assertEqual(actual, expected)
         self.assertTrue(actual.is_vector())
     

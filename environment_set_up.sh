@@ -1,1 +1,1 @@
-export PYTHONPATH=`pwd`/src/objects
+export PYTHONPATH=`${PYTHONPATH}:pwd`/src/objects:`pwd`/src

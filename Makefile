@@ -3,4 +3,4 @@ test:
 	python3 -m pytest `pwd`/src/tests/*
 
 clean:
-	rm src/objects/*.pyc
+	rm *.ppm
