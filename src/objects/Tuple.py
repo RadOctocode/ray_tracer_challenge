@@ -76,9 +76,9 @@ class Tuple:
         return Tuple(-self.x, -self.y, -self.z, -self.w)
 
     def __eq__(self, other):
-        x_equals = round(self.x, 5) == round(other.x, 5)
-        y_equals = round(self.y, 5) == round(other.y, 5)
-        z_equals = round(self.z, 5) == round(other.z, 5)
+        x_equals = self.x == other.x
+        y_equals = self.y == other.y
+        z_equals = self.z == other.z
         w_equals = self.w == other.w
         
         return x_equals and y_equals and z_equals and w_equals

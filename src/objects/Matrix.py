@@ -47,6 +47,7 @@ class Matrix:
                     return False
         return True
 
+
     def __mul__(self, other):
         """make sure the number of cols in matrix 1 == rows in matrix 2"""
         if isinstance(other, Matrix):
@@ -98,10 +99,16 @@ class Matrix:
         raise Exception("the identity matrix must be square")        
 
     def print_matrix(self):
+        """
+            matrix pretty print
+        """
         for i in range(self.height):
-                for j in range(self.width):
-                    print(self.matrix[i][j])
-
+            print_str = ""
+            for j in range(self.width):
+                    print_str = print_str+"|"+str(self.matrix[i][j])+"|"
+            print(print_str)
+            print("\n")
+    
     def transpose(self):
         """
             rotate the matrix
@@ -117,6 +124,7 @@ class Matrix:
     def invert(self):
         """
             find the inverse of a matrix
+            round to 5 decimal places
             return the inverse of a matrix
         """
         current_determinant = self.find_determinant()
@@ -126,8 +134,8 @@ class Matrix:
             new_matrix = [[0 for x in range(self.width)]for y in range(self.height)]
             for i in range(self.height):
                 for j in range(self.width):
-                    current_cofactor = self.find_cofactor(row, col)
-                    new_matrix[j][i] = current_cofactor/ current_determinant
+                    current_cofactor = self.find_cofactor(i, j)
+                    new_matrix[j][i] = current_cofactor/current_determinant
             return Matrix(new_matrix)
 
 
