@@ -97,6 +97,7 @@ class Tuple:
     
     def is_vector(self):
         return self.w == 0.0
+
     
 class Point(Tuple):
     def __init__(self, x, y, z):
