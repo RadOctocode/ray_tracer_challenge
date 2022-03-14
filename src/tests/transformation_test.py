@@ -1,10 +1,11 @@
 from asyncio import TimerHandle
+from re import I
 import unittest
 from Matrix import Matrix
 from Tuple import Point
 from Tuple import Vector
-from functions.transformation import scaling, translation
-from transformation import *
+from functions.transformation import rotation_x, rotation_y, rotation_z, scaling, translation
+from math import pi, sqrt
 
 class TransformationTest(unittest.TestCase):
     """
@@ -79,3 +80,79 @@ class TransformationTest(unittest.TestCase):
         point = Point(2, 3 ,4)
         expected = Point(-2, 3, 4)
         actual = transform * point
+        self.assertEqual(expected, actual)
+    
+    def test_rotate_around_x(self):
+        """
+            test the rotate around x function
+        """
+        point = Point(0, 1, 0)
+        half_quarter = rotation_x(pi/4)
+        full_quarter = rotation_x(pi/2)
+        hq_expected = Point(0, sqrt(2)/2, sqrt(2)/2)
+        fq_expected = Point(0, 0, 1)
+        hq_actual = half_quarter * point
+        fq_actual = full_quarter * point
+        
+        self.assertAlmostEqual(fq_expected.x, fq_actual.x, 5)
+        self.assertAlmostEqual(fq_expected.y, fq_actual.y, 5)
+        self.assertAlmostEqual(fq_expected.z, fq_actual.z, 5)
+
+        self.assertAlmostEqual(hq_expected.x, hq_actual.x, 5)
+        self.assertAlmostEqual(hq_expected.y, hq_actual.y, 5)
+        self.assertAlmostEqual(hq_expected.z, hq_actual.z, 5)
+
+    def test_inverse_rotation_x(self):
+        """
+            check the inverse of an x rotation rotates in the opposite direction
+        """
+        point = Point(0, 1, 0)
+        half_quarter = rotation_x(pi/4)
+        inverse = half_quarter.invert()
+        hq_expected = Point(0, sqrt(2)/2, -1*sqrt(2)/2)
+        hq_actual = inverse * point
+
+        self.assertAlmostEqual(hq_expected.x, hq_actual.x, 5)
+        self.assertAlmostEqual(hq_expected.y, hq_actual.y, 5)
+        self.assertAlmostEqual(hq_expected.z, hq_actual.z, 5)
+    
+    def test_rotate_around_y(self):
+        """
+            test the rotate around y function
+        """
+        point = Point(0, 0, 1)
+        half_quarter = rotation_y(pi/4)
+        full_quarter = rotation_y(pi/2)
+        hq_expected = Point(sqrt(2)/2, 0, sqrt(2)/2)
+        fq_expected = Point(1, 0, 0)
+        hq_actual = half_quarter * point
+        fq_actual = full_quarter * point
+
+
+        self.assertAlmostEqual(fq_expected.x, fq_actual.x, 5)
+        self.assertAlmostEqual(fq_expected.y, fq_actual.y, 5)
+        self.assertAlmostEqual(fq_expected.z, fq_actual.z, 5)
+
+        self.assertAlmostEqual(hq_expected.x, hq_actual.x, 5)
+        self.assertAlmostEqual(hq_expected.y, hq_actual.y, 5)
+        self.assertAlmostEqual(hq_expected.z, hq_actual.z, 5)
+
+    def test_rotate_around_z(self):
+        """
+            test the rotate around z function
+        """
+        point = Point(0, 1, 0)
+        half_quarter = rotation_z(pi/4)
+        full_quarter = rotation_z(pi/2)
+        hq_expected = Point(-1*sqrt(2)/2, sqrt(2)/2, 0)
+        fq_expected = Point(-1, 0, 0)
+        hq_actual = half_quarter * point
+        fq_actual = full_quarter * point
+        
+        self.assertAlmostEqual(fq_expected.x, fq_actual.x, 5)
+        self.assertAlmostEqual(fq_expected.y, fq_actual.y, 5)
+        self.assertAlmostEqual(fq_expected.z, fq_actual.z, 5)
+
+        self.assertAlmostEqual(hq_expected.x, hq_actual.x, 5)
+        self.assertAlmostEqual(hq_expected.y, hq_actual.y, 5)
+        self.assertAlmostEqual(hq_expected.z, hq_actual.z, 5)
