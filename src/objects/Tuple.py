@@ -92,6 +92,16 @@ class Tuple:
         """
         return Tuple(self.x/other, self.y/other, self.z/other, self.w/other)
     
+    def print_tuple(self):
+        """
+            print tuple
+        """
+        print("x: " + str(self.x) + ", ")
+        print("y: " + str(self.y) + ", ")
+        print("z: " + str(self.z) + ", ")
+        print("w: " + str(self.w))
+
+
     def is_point(self):
         return self.w == 1.0
     

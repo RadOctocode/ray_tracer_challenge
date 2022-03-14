@@ -1,4 +1,4 @@
-from Tuple import Tuple
+from Tuple import Tuple, Vector
 
 def tuple_id_matrix():
     id = [[1,0,0,0],[0,1,0,0],[0,0,1,0],[0,0,0,1]]
@@ -69,7 +69,6 @@ class Matrix:
                         other.y + current_row[2] * \
                         other.z + current_row[3] * other.w
                 return Tuple(tuple_values[0], tuple_values[1], tuple_values[2], tuple_values[3])
-
         raise Exception(
             "make sure the # of cols in matrix A equal the # of rows in matrix B")
 
