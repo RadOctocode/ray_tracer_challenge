@@ -58,3 +58,8 @@ def shearing(x_a, x_b, y_a, y_b, z_a, z_b):
     """
         returns a shearing matrix
     """
+    sample_matrix = [[1, x_a, x_b, 0],
+        [y_a, 1, y_b, 0],
+        [z_a, z_b, 1, 0],
+        [0, 0, 0, 1]]
+    return Matrix(sample_matrix)

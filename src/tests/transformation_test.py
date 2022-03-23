@@ -4,7 +4,7 @@ import unittest
 from Matrix import Matrix
 from Tuple import Point
 from Tuple import Vector
-from functions.transformation import rotation_x, rotation_y, rotation_z, scaling, translation
+from functions.transformation import rotation_x, rotation_y, rotation_z, scaling, translation, shearing
 from math import pi, sqrt
 
 class TransformationTest(unittest.TestCase):
@@ -156,3 +156,53 @@ class TransformationTest(unittest.TestCase):
         self.assertAlmostEqual(hq_expected.x, hq_actual.x, 5)
         self.assertAlmostEqual(hq_expected.y, hq_actual.y, 5)
         self.assertAlmostEqual(hq_expected.z, hq_actual.z, 5)
+    
+    def test_shearing_x_in_y(self):
+        transform = shearing(1, 0, 0, 0, 0, 0)
+        point = Point(2, 3, 4)
+        expected = Point(5, 3, 4)
+        actual = transform * point
+
+        self.assertEqual(expected, actual)
+    
+    def test_shearing_x_in_z(self):
+        transform = shearing(0, 1, 0, 0, 0, 0)
+        point = Point(2, 3, 4)
+        expected = Point(6, 3, 4)
+        actual = transform * point
+
+        self.assertEqual(expected, actual)
+    
+    def test_shearing_y_in_x(self):
+        transform = shearing(0, 0, 1, 0, 0, 0)
+        point = Point(2, 3, 4)
+        expected = Point(2, 5, 4)
+        actual = transform * point
+
+        self.assertEqual(expected, actual)
+
+    def test_shearing_y_in_z(self):
+        transform = shearing(0, 0, 0, 1, 0, 0)
+        point = Point(2, 3, 4)
+        expected = Point(2, 7, 4)
+        actual = transform * point
+
+        self.assertEqual(expected, actual)
+
+    def test_shearing_z_in_x(self):
+        transform = shearing(0, 0, 0, 0, 1, 0)
+        point = Point(2, 3, 4)
+        expected = Point(2, 3, 6)
+        actual = transform * point
+
+        self.assertEqual(expected, actual)
+
+    def test_shearing_z_in_x(self):
+        transform = shearing(0, 0, 0, 0, 0, 1)
+        point = Point(2, 3, 4)
+        expected = Point(2, 3, 7)
+        actual = transform * point
+
+        self.assertEqual(expected, actual)
+    
+    def
