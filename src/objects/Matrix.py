@@ -1,7 +1,8 @@
 from Tuple import Tuple, Vector
 
+
 def tuple_id_matrix():
-    id = [[1,0,0,0],[0,1,0,0],[0,0,1,0],[0,0,0,1]]
+    id = [[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1]]
     return Matrix(id)
 
 
@@ -47,7 +48,6 @@ class Matrix:
                     return False
         return True
 
-
     def __mul__(self, other):
         """make sure the number of cols in matrix 1 == rows in matrix 2"""
         if isinstance(other, Matrix):
@@ -68,13 +68,17 @@ class Matrix:
                     tuple_values[i] = current_row[0] * other.x + current_row[1] * \
                         other.y + current_row[2] * \
                         other.z + current_row[3] * other.w
-                return Tuple(tuple_values[0], tuple_values[1], tuple_values[2], tuple_values[3])
+                return Tuple(
+                    tuple_values[0],
+                    tuple_values[1],
+                    tuple_values[2],
+                    tuple_values[3])
         raise Exception(
             "make sure the # of cols in matrix A equal the # of rows in matrix B")
 
     def _multiply_helper(self, other, col, height, row):
         """
-            multiplies the other col by the self row  
+            multiplies the other col by the self row
             then adds it together
         """
         return_value = 0
@@ -83,19 +87,20 @@ class Matrix:
             return_value += self_row[i] * other.matrix[i][col]
 
         return return_value
-    
+
     def get_identity_matrix(self):
         """
             get the identity matrix
             returns identity matrix
         """
         if self.width == self.height:
-            id_matrix = [[0 for x in range(self.width)]for y in range(self.height)]
+            id_matrix = [[0 for x in range(self.width)]
+                         for y in range(self.height)]
             for i in range(self.width):
                 id_matrix[i][i] = 1
             return Matrix(id_matrix)
-                
-        raise Exception("the identity matrix must be square")        
+
+        raise Exception("the identity matrix must be square")
 
     def print_matrix(self):
         """
@@ -104,19 +109,20 @@ class Matrix:
         for i in range(self.height):
             print_str = ""
             for j in range(self.width):
-                    print_str = print_str+"|"+str(self.matrix[i][j])+"|"
+                print_str = print_str + "|" + str(self.matrix[i][j]) + "|"
             print(print_str)
             print("\n")
-    
+
     def transpose(self):
         """
             rotate the matrix
             return the transpose of the matrix
         """
-        new_matrix = [[0 for x in range(self.height)]for y in range(self.width)]
+        new_matrix = [[0 for x in range(self.height)]
+                      for y in range(self.width)]
         for i in range(self.height):
             for j in range(self.width):
-                    new_matrix[j][i] = self.matrix[i][j]
+                new_matrix[j][i] = self.matrix[i][j]
 
         return Matrix(new_matrix)
 
@@ -130,13 +136,13 @@ class Matrix:
         if current_determinant == 0:
             raise Exception("the matrix is not invertible")
         else:
-            new_matrix = [[0 for x in range(self.width)]for y in range(self.height)]
+            new_matrix = [[0 for x in range(self.width)]
+                          for y in range(self.height)]
             for i in range(self.height):
                 for j in range(self.width):
                     current_cofactor = self.find_cofactor(i, j)
-                    new_matrix[j][i] = current_cofactor/current_determinant
+                    new_matrix[j][i] = current_cofactor / current_determinant
             return Matrix(new_matrix)
-
 
     def find_determinant(self):
         """
@@ -144,7 +150,8 @@ class Matrix:
             returns determinant
         """
         if self.height == 2 and self.width == 2:
-            return (self.matrix[0][0] * self.matrix[1][1]) - (self.matrix[0][1] * self.matrix[1][0])
+            return (self.matrix[0][0] * self.matrix[1][1]) - \
+                (self.matrix[0][1] * self.matrix[1][0])
         else:
             determinant = 0
             for j in range(self.width):
@@ -160,7 +167,8 @@ class Matrix:
         new_height = self.height - 1
         if new_width >= 0 and new_height >= 0:
             if row < self.height and col < self.width:
-                new_matrix = [[0 for x in range(new_width)]for y in range(new_height)]
+                new_matrix = [[0 for x in range(new_width)]
+                              for y in range(new_height)]
                 new_col_index = 0
                 new_row_index = 0
                 for i in range(self.height):
@@ -174,7 +182,8 @@ class Matrix:
                 return Matrix(new_matrix)
 
             else:
-                raise Exception("you're removing a row/ col that doesn't exist")
+                raise Exception(
+                    "you're removing a row/ col that doesn't exist")
 
     def find_minor(self, row, col):
         """
@@ -183,16 +192,16 @@ class Matrix:
         """
         new_submatrix = self.find_submatrix(row, col)
         return new_submatrix.find_determinant()
-    
+
     def find_cofactor(self, row, col):
         """
             find the cofactor of a 3 by 3 matrix
         """
         multiply = 1
-        if (row + col)%2 == 1:
+        if (row + col) % 2 == 1:
             multiply = -1
         return self.find_minor(row, col) * multiply
 
-#backend systems developer
-#features delivery
-#REST api graphql and database design
+# backend systems developer
+# features delivery
+# REST api graphql and database design

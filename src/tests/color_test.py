@@ -1,6 +1,7 @@
 import unittest
 from Color import Color
 
+
 class ColorTest(unittest.TestCase):
     def test_color_object(self):
         a = Color(-0.5, 0.4, 1.7)
