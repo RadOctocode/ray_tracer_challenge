@@ -10,4 +10,7 @@ lint:
 clean:
 	rm *.ppm
 
+clean_examples:
+	rm examples/*.ppm
+
 #image is upside down and needs to be flipped vertically
