@@ -1,4 +1,5 @@
 from Tuple import Point, dot_product
+from Intersection import Intersection, Intersections
 from math import sqrt
 
 
@@ -22,12 +23,20 @@ class Sphere:
         c = dot_product(sphere_to_ray, sphere_to_ray) - 1
 
         discriminant = b * b - 4 * a * c
+        # does the ray ever even intersect the sphere?
 
         if discriminant < 0:
-            return []
+            return Intersections([])
 
         neg_b = b * -1
         t1 = (neg_b - sqrt(discriminant)) / (2 * a)
         t2 = (neg_b + sqrt(discriminant)) / (2 * a)
+        I1 = Intersection(t1, self)
+        I2 = Intersection(t2, self)
 
-        return [t1, t2]
+        return Intersections([I1, I2])
+
+    def __eq__(self, other):
+        origin_eq = other._origin == self._origin
+        radius_eq = other._radius == self._radius
+        return origin_eq and radius_eq
