@@ -40,7 +40,6 @@ class TransformationTest(unittest.TestCase):
             multiply by a vector does nothing
         """
         transform = translation(5, -3, 2)
-        transform.print_matrix()
         v = Vector(-3, 4, 5)
         actual = transform * v
         self.assertEqual(v, actual)

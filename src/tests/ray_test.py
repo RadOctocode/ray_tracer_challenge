@@ -3,6 +3,8 @@ from Ray import Ray, position
 from Tuple import Tuple, Vector, Point
 from Shapes import Sphere
 from Intersection import Intersection, Intersections
+from functions.transformation import scaling, translation, shearing
+
 
 
 class RayTest(unittest.TestCase):
@@ -79,3 +81,17 @@ class RayTest(unittest.TestCase):
         self.assertEqual(intersect_test.count, 2)
         self.assertEqual(intersect_test[0].point, -6.0)
         self.assertEqual(intersect_test[1].point, -4.0)
+    
+    def test_ray_translation(self):
+        r = Ray(Point(1.0,2.0,3.0), Vector(0,1.0,0))
+        m = translation(3.0, 4.0, 5.0)
+        r2 = r.transform(m)
+        self.assertEqual(r2.origin, Point(4.0, 6.0, 8.0))
+        self.asserEqual(r2.direction, Vector(0,1,0))
+    
+    def test_ray_scaling(self):
+        r = Ray(Point(1.0, 2.0, 3.0), Vector(0, 1.0, 0))
+        m = scaling(2.0,3.0,4.0)
+        r2 = r.transform(m)
+        self.assertEqual(r2.origin, Point(2.0,6.0,12.0))
+        self.assertEqual(r2.direction, Vector(0,3.0,0))

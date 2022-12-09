@@ -14,6 +14,21 @@ class Intersection:
         self._int_point = point
         self._object = object
 
+    def __lt__(self, other):
+        return ((self._int_point) < (other._int_point))
+
+    def __gt__(self, other):
+        return ((self._int_point) > (other._int_point))
+
+    def __le__(self, other):
+        return ((self._int_point) <= (other._int_point))
+
+    def __ge__(self, other):
+        return ((self._int_point) >= (other._int_point))
+
+    def __eq__(self, other):
+        return ((self._int_point) == (other._int_point))
+
     @property
     def point(self):
         return self._int_point
@@ -30,7 +45,7 @@ class Intersections:
     """
 
     def __init__(self, array):
-        self._array = array
+        self._array = sorted(array)
 
     def __getitem__(self, index):
         return self._array[index]
@@ -38,6 +53,18 @@ class Intersections:
     @property
     def count(self):
         return len(self._array)
+
+    def add(self, intersection):
+        """
+            adds an intersection to the arrayin a sorted way
+            returns index added
+        """
+        for i in range(len(self._array)):
+            if self._array[i] >= intersection:
+                self._array.insert(i, intersection)
+                return i
+
+        self._array.insert(len(self._array) - 1, intersection)
 
     def hit(self):
         """

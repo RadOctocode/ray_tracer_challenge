@@ -123,6 +123,9 @@ class Tuple:
 
     def is_vector(self):
         return self.w == 0.0
+    
+    def return_as_list(self):
+        return[self.x, self.y, self.z, self.w]
 
 
 class Point(Tuple):

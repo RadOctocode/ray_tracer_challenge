@@ -4,6 +4,9 @@ from math import sqrt
 
 
 class Sphere:
+    """
+        The Sphere class has an origin which is a point and a radius which is a number
+    """
     def __init__(self):
         self._origin = Point(0, 0, 0)
         self._radius = 1.0
@@ -17,6 +20,10 @@ class Sphere:
         return self._radius
 
     def intersect(self, ray):
+        """
+            given a ray see if it intersects with the sphere
+            return an Intersections opbject
+        """
         sphere_to_ray = ray.origin - self.origin
         a = dot_product(ray.direction, ray.direction)
         b = 2 * dot_product(ray.direction, sphere_to_ray)

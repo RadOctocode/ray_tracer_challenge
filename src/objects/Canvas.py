@@ -13,6 +13,9 @@ def _clamp_canvas_value(value):
 
 
 class Canvas():
+    """
+        The Canvas class stores the canvas of the image and writes the image to a ppm file
+    """
     def __init__(self, width, height, color=Color(0.0, 0.0, 0.0)):
         self._height = height
         self._width = width
@@ -27,6 +30,10 @@ class Canvas():
         return self._width
 
     def at(self, x, y):
+        """
+            given x and y coordinates
+            get color at coords
+        """
         try:
             return self._canvas[y][x]
         except IndexError:
@@ -42,6 +49,9 @@ class Canvas():
             raise IndexError('index out of bounds!')
 
     def write_to_PPM(self, file_name):
+        """
+            writes the canvas to a ppm
+        """
         with open(file_name, 'a') as file:
             file.write("P3\n")
             file.write(f"{self.width} {self.height}\n")

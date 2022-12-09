@@ -2,23 +2,26 @@ from Tuple import Tuple
 
 
 class Color:
+    """
+        Color stores a pixel color in an object
+    """
     def __init__(self, x, y, z):
-        self._x = x
-        self._y = y
-        self._z = z
+        self._red = x
+        self._green = y
+        self._blue = z
         self._w = 1.0
 
     @property
     def red(self):
-        return self._x
+        return self._red
 
     @property
     def green(self):
-        return self._y
+        return self._green
 
     @property
     def blue(self):
-        return self._z
+        return self._blue
 
     def __add__(self, other):
         new_r = self.red + other.red

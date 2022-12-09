@@ -202,6 +202,3 @@ class Matrix:
             multiply = -1
         return self.find_minor(row, col) * multiply
 
-# backend systems developer
-# features delivery
-# REST api graphql and database design
